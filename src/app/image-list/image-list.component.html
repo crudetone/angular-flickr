@@ -1,0 +1,42 @@
+<mat-card class="image-list__header">
+  <mat-card-content>
+    <mat-form-field>
+      <input [(ngModel)]="searchQuery" matInput placeholder="search...">
+    </mat-form-field>
+    <br>
+    <button class="image-list__btn" (click)="searchImages(searchQuery, pageNumber)" mat-raised-button color="primary">Find images</button>
+  </mat-card-content>
+</mat-card>
+
+<div *ngIf="isSearching">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+
+<div>
+  <div class="image-list__search-filter">
+    <mat-form-field>
+      <input [(ngModel)]="searchTerms" matInput placeholder="you can filter only by image title...">
+    </mat-form-field>
+  </div>
+  <ngx-masonry class="image-list__list" [useImagesLoaded]="true">
+    <ngxMasonryItem class="image-list__item" *ngFor="let image of images | searchFilter:searchTerms">
+      <!--<app-image-item *ngIf="image" [imageItem]="image"></app-image-item>-->
+      <mat-card>
+        <mat-card-header class="image-list__item-info">
+          <p class="image-list__author"><span>Author - </span>{{getAuthor(image)}}</p>
+          <p class="image-list__date"><span>Date - </span>{{getPostDate(image) | date}}</p>
+        </mat-card-header>
+        <mat-card-content class="image-list__item-content">
+          <img mat-card-image [src]="getImageUrl(image)" alt="" class="img-fluid">
+          <p>{{image.title}}</p>
+        </mat-card-content>
+      </mat-card>
+    </ngxMasonryItem>
+  </ngx-masonry>
+</div>
+<div class="search-results"
+  infiniteScroll
+  [infiniteScrollDistance]="1"
+  [infiniteScrollThrottle]="500"
+  (scrolled)="onScroll(searchQuery)">
+</div>

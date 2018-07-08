@@ -1,0 +1,48 @@
+.image-list {
+
+  &__header {
+    margin-top: 25px;
+  }
+
+  &__btn {}
+
+  &__item {
+    width: 32%;
+  }
+
+  &__list {
+    margin-top: 50px;
+  }
+
+  &__item-info {
+    flex-direction: column;
+  }
+
+  &__item-content {
+    text-align: center;
+  }
+
+  &__author {
+
+    span {
+      font-weight: bold;
+      font-size: 1em;
+    }
+  }
+
+  &__date {
+    font-style: italic;
+    span {
+      font-weight: normal;
+      font-size: 1em;
+    }
+  }
+
+  &__search-filter {
+    margin: 25px 0;
+  }
+}
+
+.mat-form-field {
+  width: 100% !important;
+}
