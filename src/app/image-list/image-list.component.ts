@@ -14,14 +14,10 @@ export class ImageListComponent {
   constructor(private imagesService: ImagesService) { }
 
   handleSuccess(images) {
-    console.log('this.images: ', this.images);
-    console.log('images: ', images);
     if (!this.images) {
-      console.log('1');
       return this.images = images;
     }
 
-    console.log('2');
     this.images = [...this.images, ...images];
     return ;
   }
@@ -61,8 +57,6 @@ export class ImageListComponent {
 
   onScroll(searchQuery) {
     this.pageNumber++;
-    console.log('searchQuery: ', searchQuery);
-    console.log('this.pageNumber: ', this.pageNumber);
     this.searchImages(searchQuery, this.pageNumber);
   }
 }
